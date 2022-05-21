@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        int size = strs.size();
+        int shortest = strs[0].length(); // shortest length of word
+        string word; // shortest word
+        string prefix[size];
+        string temp = "";
+        string lcp; //longest common prefix
+        for(int i = 0;i<size;i++){
+            if(strs[i].length()<=shortest){
+                shortest = strs[i].length();
+                word = strs[i];
+            }
+        }
+        for(int i = 0;i<size;i++){
+            for(int j = 0;j < word.length();j++){
+                if(strs[i][j]==word[j]){
+                    prefix[i]+=word[j];
+                }
+                else
+                    break;
+            }
+        }
+        shortest = prefix[0].length();
+        lcp=prefix[0];
+        for(int i = 0;i<size;i++){
+            if(prefix[i].length()<=shortest){
+                shortest = prefix[i].length();
+                lcp=prefix[i];
+            }
+        }
+        return lcp;   
+    }
+};
