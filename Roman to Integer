@@ -1,0 +1,56 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        string I = "1",V="5",X="10",L="50",C="100",D="500",M="1000";
+        char temp;
+        int tnum=0; // temporary number
+        int total=0;
+        int size = s.length();
+            for(int i = 0;i<size;i++){
+                if(i>0){
+                    if((s[i]=='V'||s[i]=='X')&&s[i-1]=='I'){
+                        tnum = Value(s[i])-((Value(s[i-1])*2));
+                    }
+                    else if((s[i]=='L'||s[i]=='C')&&s[i-1]=='X'){
+                        tnum = Value(s[i])-((Value(s[i-1])*2));
+                    }
+                    else if((s[i]=='D'||s[i]=='M')&&s[i-1]=='C'){
+                        tnum = Value(s[i])-((Value(s[i-1])*2));
+                    }
+                    else
+                        tnum = Value(s[i]);
+                    total+=tnum;
+                }
+                else
+                    total+=Value(s[i]);
+            }
+        return total;
+    }
+    int Value(char l){
+        int v;
+        switch(l){
+            case 'I':
+                v=1;
+                break;
+            case 'V':
+                v=5;
+                break;
+            case 'X':
+                v=10;
+                break;
+            case 'L':
+                v=50;
+                break;
+            case 'C':
+                v=100;
+                break;
+            case 'D':
+                v=500;
+                break;
+            case 'M':
+                v=1000;
+                break;
+        }
+        return v;
+    }
+};
