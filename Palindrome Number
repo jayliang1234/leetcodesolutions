@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        std::string num = std::to_string(x);
+        int size = num.size();
+        string temp;
+        for(int i = size-1;i>=0;i--){
+            temp += num[i];
+        }
+        if(temp == num){
+            return true;
+        }
+        else
+            return false;
+    }
+};
