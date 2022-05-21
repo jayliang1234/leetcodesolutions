@@ -1,0 +1,35 @@
+#include<unordered_map>
+#include<string>
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        unordered_map<string,int> split;
+        int index;
+        string temp;
+        if(needle==""){
+            return 0;
+        }
+        if(needle.length()==1){
+            if(needle[0]==haystack[0]){
+                return 0;
+            }
+        }
+        if(needle.length()>haystack.length()){
+            return -1;
+        }
+        int newsize = needle.length()-1;
+        for(int i=0;i<haystack.length()-newsize;i++){
+            temp="";
+            for(int j=i;j<needle.length()+i;j++){
+                temp+=haystack[j];
+            }
+            split.insert({temp,i});
+        }
+        if(split.count(needle)>0){
+            index = split[needle];
+            return index;
+        }
+        else
+            return -1;
+    }
+};
