@@ -8,9 +8,6 @@ public:
                 left++;
             }
         }
-        for (int i = left; i< nums.size();i++){
-            nums[left] = '_';
-        }
         return left;
     }
 };
