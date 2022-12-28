@@ -1,0 +1,40 @@
+#include<unordered_map>
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string,vector<string>>map;
+        vector<vector<string>> ans;
+        char letter;
+        
+        
+        for(int i =0; i< strs.size();i++){
+            string ana;
+            vector<int> array(26);
+            
+            for(int j=0; j < strs.at(i).size(); j++){ // makes the int key
+                letter = strs.at(i)[j];
+                array[int(letter) - 97]++;
+            }
+            
+            for(int i =0; i<26;i++){ //converts key to string
+                ana.append(to_string(array[i]+'a'));
+            }
+            
+            if(map.find(ana) == map.end()){ // when the key is not in the map
+                vector<string> myvector;
+                myvector.push_back(strs.at(i));
+                map[ana] = myvector;
+            }
+            else{ //when the key is in the map
+                map[ana].push_back(strs.at(i));
+            }
+        }
+        for(auto it = map.begin(); it != map.end(); it++){
+            ans.push_back(it->second);
+        }
+        return ans;
+    }
+   
+
+   
+};
